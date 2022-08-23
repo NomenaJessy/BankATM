@@ -1,0 +1,42 @@
+CREATE ROLE bankatm LOGIN PASSWORD '123456';
+CREATE DATABASE bankatm;
+ALTER DATABASE bankatm OWNER TO bankatm;
+
+CREATE SEQUENCE idRole START WITH 1;
+CREATE TABLE RoleTable(
+    idRole VARCHAR(10) PRIMARY KEY NOT NULL DEFAULT NEXTVAL('idRole'),
+    RoleType VARCHAR(250)
+);
+
+CREATE SEQUENCE idUser START WITH 1;
+CREATE TABLE UserTable(
+    idUser VARCHAR(250) PRIMARY KEY NOT NULL DEFAULT NEXTVAL('idUser'),
+    Firstname VARCHAR(250),
+    Lastname VARCHAR(250),
+    Birthdate DATE NOT NULL,
+    Mail VARCHAR(250) NOT NULL,
+    Password VARCHAR(250) NOT NULL,
+    RoleType VARCHAR(10) REFERENCES RoleTable(idRole) ON DELETE CASCADE
+);
+
+CREATE SEQUENCE idBalance START WITH 1;
+CREATE TABLE Balance(
+    idBalance VARCHAR(250) PRIMARY KEY NOT NULL DEFAULT NEXTVAL('idBalance'),
+    Amount DECIMAL,
+    idUser VARCHAR(250) REFERENCES UserTable(idUser) ON DELETE CASCADE
+);
+
+CREATE SEQUENCE idTransactionType START WITH 1;
+CREATE TABLE TransactionType(
+    idTransactionType VARCHAR(250) PRIMARY KEY NOT NULL DEFAULT NEXTVAL('idTransactionType'),
+    OperationType VARCHAR(250) NOT NULL
+);
+
+CREATE SEQUENCE idTransaction START WITH 1;
+CREATE TABLE Transaction(
+    idTransaction VARCHAR(250) PRIMARY KEY NOT NULL DEFAULT NEXTVAL('idTransaction'),
+    Amount DECIMAL,
+    idUser VARCHAR(250) REFERENCES UserTable(idUser) ON DELETE CASCADE,
+    idTransactionType VARCHAR(250) REFERENCES TransactionType(idTransactionType) ON DELETE CASCADE
+);
+
