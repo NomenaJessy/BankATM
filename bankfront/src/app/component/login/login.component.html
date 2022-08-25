@@ -1,0 +1,16 @@
+<form class="login-form">
+    <h4>Connection</h4>
+    <div class="message" style="color:red">{{ error_msg }}</div>
+    <div class="message" style="color:red"></div>
+    <div class="input-group span-2">
+        <label for="" class="input-label">Mail</label>
+        <input type="text"  [(ngModel)]="mail" [ngModelOptions]="{standalone: true}" class="input-text" placeholder="Enter your mail address">
+    </div>
+    <div class="input-group span-2">
+        <label for="" class="input-label">Password</label>
+        <input type="password"  [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="input-text" placeholder="Enter your password">
+    </div>
+    <div class="input-group">
+        <button type="submit" class="input-button input-button-primary" (click)="Connection()">Sign in</button>
+    </div>
+</form>

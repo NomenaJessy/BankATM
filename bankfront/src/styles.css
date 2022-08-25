@@ -1,0 +1,268 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+:root{
+    --primary-color: rgb(85, 188, 161);
+    --text-color:#2a2b2c;
+    --secondary-color: rgb(126, 218, 193);
+}
+
+body{
+    font-size:1rem;
+    line-height:1.5;
+    font-family:"Inter", "Poppins", sans-serif;
+    color: var(--text-color);
+    background-color: #ededf6;
+}
+
+label{
+    display: block;
+}
+
+input, button{
+    border: none;
+    box-shadow: none;
+    font: inherit;
+    width: 100%;
+}
+
+:focus{
+    outline: 0;
+    box-shadow:0 0 0 0.25rem rgb(95, 89, 79);
+}
+
+.message{
+  font-size: 0.75rem;
+}
+
+.login-form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 600px;
+    max-width: 90%;
+    background-color: #fff;
+    display: grid;
+    grid: auto / 1fr 1fr;
+    column-gap: 1rem;
+    row-gap: 2rem;
+    padding: 3rem;
+    box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.15);
+    font-size: 1.125rem;
+}
+
+.input-group{
+    grid-column: span 1;
+}
+
+.input-label{
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.input-text{
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 0.25rem;
+}
+
+.input-button{
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 2px solid var(--secondary-color);
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+}
+
+.input-button-primary{
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+}
+
+.input-button-primary:hover{
+    background-color:rgb(83, 156, 137);
+}
+
+.span-2{
+    grid-column: span 2;
+}
+
+.home{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.grid-container {
+    display: grid;
+    /* grid-template-columns:1fr; */
+    grid-template-rows: 50px 1fr 50px;
+    grid-template-areas:
+        'header'
+        'main'
+        'footer';
+    height: 100vh;
+}
+
+.header {
+    grid-area: header;
+    color:#FFFFFF;
+    background: linear-gradient(90deg, rgba(43,90,148,1) 0%, rgba(45,112,229,1) 35%, rgb(43, 105, 212) 100%);
+}
+
+.main {
+    grid-area: main;
+    background-color: #f1f5f8;
+}
+.footer {
+    grid-area: footer;
+    text-align:center;
+    background-color: rgb(47, 113, 226);
+}
+
+.header, .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff;
+    padding: 0 15px;
+}
+
+.list {
+    padding: 0;
+    margin-top: 0px;
+    list-style-type: none;
+}
+
+.list-item {
+    padding: 20px 20px 20px 40px;
+    color: var(--text-color);
+}
+
+.list-item:hover {
+    background-color: rgb(47, 113, 226);
+    cursor: pointer;
+}
+
+.main_overview {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    color:#FFFFFF;
+    background:linear-gradient(90deg, rgba(43,90,148,1) 0%, rgba(45,112,229,1) 35%, rgb(43, 105, 212) 100%);
+    /* border-bottom: 1px solid var(--text-color); */
+}
+.overview_card {
+    flex-basis: 250px;
+    flex-grow: 1;
+    margin: 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    /* background-color: seagreen; */
+    height: 100px;
+    border: 1px solid rgba(93, 92, 92, 0.15);
+    border-radius: 4px;
+    color: #FFFFFF;
+}
+
+.main_cards {
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 500px 200px 300px;
+    grid-template-areas:
+        'card1'
+        'card2'
+        'card3';
+    grid-gap: 10px;
+}
+.card {
+    padding: 20px;
+    border: 1px solid rgba(93, 92, 92, 0.15);
+    border-radius: 4px;
+    color: var(--text-color);
+}
+
+.card:first-child {
+    grid-area: card1;
+}
+.card:nth-child(2) {
+    grid-area: card2;
+}
+.card:nth-child(3) {
+    grid-area: card3;
+}
+
+
+@media only screen and (min-width: 750px) {
+    .grid-container {
+        display: grid;
+        grid-template-rows: 50px 1fr 50px;
+        grid-template-areas:
+            'header'
+            'main'
+            'footer';
+        height: 100vh;
+    }
+
+    .main_cards {
+        margin: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 210px 210px 330px;
+        grid-template-areas:
+            'card1 card2'
+            'card1 card3'
+            'card1 card4';
+
+        grid-gap: 10px;
+        box-shadow: #88888b 5px ;
+    }
+    .main_cards h4{
+        text-align:center;
+    }
+    .main_cards label{
+        /* text-align:center; */
+        margin-top:3px;
+    }
+}
+
+.menu-icon {
+    position: fixed;
+    display: flex;
+    top: 2px;
+    left: 8px;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    cursor: pointer;
+    padding: 12px;
+    color: var(--text-color);
+}
+
+.header_search {
+    margin-left: 24px;
+}
+
+.header_avatar {
+    margin-left: 24px;
+    border:none;
+}

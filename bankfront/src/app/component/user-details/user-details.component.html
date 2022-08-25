@@ -1,0 +1,26 @@
+<form class="login-form">
+    <h4>Mis a jour du profil</h4>
+    <div class="message" style="color:red"></div>
+    <div class="message" style="color:red"></div>
+    <div class="input-group span-2">
+        <label for="" class="input-label">Prenom</label>
+        <input type="text" [(ngModel)]="firstname" [ngModelOptions]="{standalone: true}"  class="input-text" placeholder="Entrez le prenom">
+    </div>
+    <div class="input-group span-2">
+        <label for="" class="input-label">Nom</label>
+        <input type="text"  [(ngModel)]="lastname" [ngModelOptions]="{standalone: true}" class="input-text" placeholder="Entrez le nom">
+    </div>
+    <div class="input-group span-2">
+        <label for="" class="input-label">Date de naissance</label>
+        <input type="date" [(ngModel)]="birthdate" [ngModelOptions]="{standalone: true}"  class="input-text">
+    </div>
+    <div class="input-group span-2">
+        <label for="" class="input-label">Mail</label>
+        <input type="text"  [(ngModel)]="mail" [ngModelOptions]="{standalone: true}" class="input-text" placeholder="Entrez l'adresse mail">
+    </div>
+    <input type="hidden" [(ngModel)]="password" [ngModelOptions]="{standalone: true}"  class="input-text" placeholder="Entrez le mot de passe">
+    <input type="hidden" [(ngModel)]="roleType" [ngModelOptions]="{standalone: true}">
+    <div class="input-group">
+        <button type="submit" class="input-button input-button-primary" (click)="modifier()">Modifier</button>
+    </div>
+</form>

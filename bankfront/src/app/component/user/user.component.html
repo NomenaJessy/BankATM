@@ -1,0 +1,54 @@
+<div class="main_overview">
+    <div class="overview_card" >
+        <div class="overview_card-info">{{user.firstname +' '+ user.lastname}}</div>
+    </div>
+    <div class="overview_card" >
+        <div class="overview_card-info">Mon solde</div>
+        <div class="overview_card-icon">{{balance +' Rs'}}</div>
+    </div>
+</div>
+
+<div class="home">
+    <div class="main_cards">
+        <div class="card">
+        <div class="filter">
+            <div class="input-group span-2">
+                <h4>Mes transactions</h4>
+                <!-- <label for="" class="input-label">Rechercher par date</label>
+                <input type="date" id="" class="input-text"> -->
+            </div>
+        </div>
+        <ul class="list">
+            <li class="list-item" *ngFor="let item of transaction">
+                <span style="color:grey">{{item.transactionDate | date:'dd-MM-yyyy'}}</span>
+                <h5>{{item.amount+' Rs'}}</h5>
+            </li>
+        </ul>
+        </div>
+        <div class="card">
+            <h5 style="text-align: center">D&eacute;poser</h5>
+            <form action="" class="mt-4">
+                <input type="number" min="1" step="any" class="input-text" [(ngModel)]="depot" [ngModelOptions]="{standalone: true}" style="margin-top:25px" placeholder="Montant a deposer">
+                <button class="input-button mt-4" style="margin-top:25px" (click)="SaveTransaction('2')">D&eacute;poser</button>
+            </form>
+        </div>
+        <div class="card">
+            <h5 style="text-align: center">Retirer</h5>
+            <form action="" class="mt-4">
+                <input type="number" min="1" step="any" style="margin-top:25px" class="input-text" [(ngModel)]="retrait" [ngModelOptions]="{standalone: true}" placeholder="Montant a retirer">
+                <button class="input-button mt-4" style="margin-top:25px" (click)="SaveTransaction('1')">Retirer</button>
+            </form>
+        </div>
+        <div class="card">
+            <h5 style="text-align: center">Transf&eacute;rer</h5>
+            <form action="">
+                <input type="number" min="1" step="any" style="margin-top:25px" class="input-text" [(ngModel)]="transfer" [ngModelOptions]="{standalone: true}" placeholder="Montant a transferer">
+                <label for="" style="margin-top:25px;margin-left: 5px;">A</label>
+                <select class="input-text" style="margin-top:25px;width:100%" [(ngModel)]="receiver" [ngModelOptions]="{standalone: true}" placeholder="Destinataire">
+                    <option *ngFor="let item of userList" value="{{item.idUser}}">{{item.firstname+' '+item.lastname}}</option>
+                </select>
+                <button class="input-button mt-4" style="margin-top:25px" (click)="SaveTransaction('3')">Transf&eacute;rer</button>
+            </form>
+        </div>
+    </div>
+ </div>

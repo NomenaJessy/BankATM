@@ -1,0 +1,10 @@
+<div class="home">
+    <div class="grid-container">
+       <app-header></app-header>
+       
+       <main class="main">
+        <div *ngIf="role === 'Admin';else clientBlock"><app-admin></app-admin></div>
+        <ng-template #clientBlock><app-user></app-user></ng-template>
+       </main>
+    </div>
+ </div>

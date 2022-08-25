@@ -1,0 +1,48 @@
+<div class="main_overview">
+    <div class="overview_card" >
+        <div class="overview_card-info">Voir les utilisateurs</div>
+    </div>
+    <div class="overview_card" >
+        <div class="overview_card-info">Voir les transactions</div>
+    </div>
+</div>
+<div class="home">
+    <div class="main_cards">
+        <div class="card">
+        <div class="filter">
+            <div class="input-group span-2">
+                <h4>Mes clients</h4>
+            </div>
+        </div>
+        <ul class="list">
+            <li class="list-item" *ngFor="let item of users">
+                <div class="header_search">
+                    <span>{{item.firstname + '  ' +item.lastname}}</span>
+                    <h5>{{item.solde+' Rs'}}</h5>
+                </div>
+                <div class="header_avatar">
+                    <span style="color:orange" (click)="modifier(item.idUser)">Modifier  </span>
+                    <span style="color:red" (click)="delete(item.idUser)"> Supprimer</span>
+                </div>
+            </li>
+        </ul>
+        </div>
+        <div class="card">
+            <div class="filter">
+                <div class="input-group span-2">
+                    <h4>Les transactions</h4>
+                </div>
+            </div>
+            <ul class="list scrollable-content">
+                <li class="list-item" *ngFor="let item of transactions;let i = index" (click)="showDetails(i)">
+                    <span style="color:grey">{{item.transactionDate | date:'dd-MM-yyyy'}}</span>
+                    <h5>{{item.amount+' Rs'}}</h5>
+                    <div class="overview_card-info" *ngIf="item.details">
+                        <span>Operation effectue par <h5>{{item.firstname+' '+item.lastname}}</h5></span><br>                
+                        <span>Type d'operation: <h5>{{item.operationType}}</h5></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+ </div>
