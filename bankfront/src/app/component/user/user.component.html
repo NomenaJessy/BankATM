@@ -14,8 +14,6 @@
         <div class="filter">
             <div class="input-group span-2">
                 <h4>Mes transactions</h4>
-                <!-- <label for="" class="input-label">Rechercher par date</label>
-                <input type="date" id="" class="input-text"> -->
             </div>
         </div>
         <ul class="list">
@@ -41,6 +39,7 @@
         </div>
         <div class="card">
             <h5 style="text-align: center">Transf&eacute;rer</h5>
+            <span style="color:red">{{error_msg}}</span>
             <form action="">
                 <input type="number" min="1" step="any" style="margin-top:25px" class="input-text" [(ngModel)]="transfer" [ngModelOptions]="{standalone: true}" placeholder="Montant a transferer">
                 <label for="" style="margin-top:25px;margin-left: 5px;">A</label>

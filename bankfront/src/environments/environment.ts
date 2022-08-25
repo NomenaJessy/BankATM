@@ -6,7 +6,7 @@ export const environment = {
   production: false
 };
 
-export const base_url = "http://localhost:12/api";
+export const base_url = "https://bankatm.herokuapp.com/api";
 
 /*
  * For easier debugging in development mode, you can import the following file

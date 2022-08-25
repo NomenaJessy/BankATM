@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from 'src/app/service/data.service';
 
 @Component({
@@ -19,7 +20,7 @@ export class UserComponent implements OnInit {
   error_msg: string='';
   message:string='';
 
-  constructor(public data: DataService) { }
+  constructor(public data: DataService,public route: Router) { }
 
   ngOnInit(): void {
     this.UserDetails();
@@ -92,11 +93,11 @@ export class UserComponent implements OnInit {
     console.log(this.receiver);
     const success = (response: any)=>{
       if(response['status'] == 200){
-        this.data.balanceSave(idUser,amount).subscribe(()=>{
-          this.message = 'Transaction effectue avec succes';
-        },()=>{
-              this.error_msg ='Erreur de transaction';
-        });
+        // this.data.balanceSave(idUser,amount).subscribe(()=>{
+          this.reloadComponent();
+        // },()=>{
+              // this.error_msg ='Erreur de transaction';
+        // });
       }
     }
     const error = (response: any)=>{};
@@ -108,6 +109,13 @@ export class UserComponent implements OnInit {
       this.data.transactionSave(amount,idUser,this.receiver,idTransactionType).subscribe(success,error);
     }
     
+  }
+
+  reloadComponent() {
+    let currentUrl = this.route.url;
+    this.route.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.route.navigate([currentUrl]);
+    });
   }
 
 }
