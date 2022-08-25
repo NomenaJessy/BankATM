@@ -54,11 +54,16 @@ public class TransactionController {
 	@PostMapping("/transaction")
 	public Map<String,Object> operation(@RequestParam("idUser") String idUser,@RequestParam("amount") String amount,@RequestParam("receiver") String receiver,@RequestParam("operationType") String idOperationType){
 		Double Amount = Double.parseDouble(amount);
-		transactionRepository.insert(Amount, idUser, receiver, idOperationType);
-		Balance balance = balanceRepository.findByUser(idUser);
-		Amount += balance.getAmount(); 
-		balance.setAmount(Amount);
-		return Helper.succesResponse(balanceRepository.save(balance));
+		int resultat = transactionRepository.insert(Amount, idUser, receiver, idOperationType);
+		if(resultat>0) {
+			Balance balance = balanceRepository.findByUser(receiver);
+			Amount += balance.getAmount(); 
+			balance.setAmount(Amount);
+			return Helper.succesResponse(balanceRepository.save(balance));
+		}else {
+			return Helper.errorResponse("Echec de la transaction");
+		}
+
 	}
 
 }

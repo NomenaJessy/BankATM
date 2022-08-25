@@ -43,6 +43,11 @@ public class UserController {
 		return Helper.succesResponse(userRepository.findById(idUser));
 	}
 	
+	@GetMapping("/users")
+	public Map<String,Object> findAllUsers(){
+		return Helper.succesResponse(userRepository.findUser());
+	}
+	
 	@PostMapping("/connexion")
 	public Map<String,Object> connexion(@RequestParam(value = "mail") String Mail,@RequestParam(value = "password") String Password){
 		try {
@@ -66,11 +71,17 @@ public class UserController {
 		}
 	}
 	
-//	@PutMapping("/user/{id}")
-//	public Map<String,Object> update(@PathVariable("id") String idUser,@RequestBody User user){
-//		user.setIdUser(idUser);
-//		return Helper.succesResponse(userRepository.save(user));
-//	}
+	@PutMapping("/user/{id}")
+	public Map<String,Object> update(@PathVariable("id") String idUser,@ModelAttribute User user){
+		user.setIdUser(idUser);
+		System.out.println(user.getFirstname());
+		int resultat = userRepository.update(user.getFirstname(),user.getLastname(),user.getBirthdate(),user.getMail(),user.getIdUser());
+		if(resultat>0) {
+			return Helper.succesResponse("Operation reussi");
+		}else {
+			return Helper.errorResponse("Echec de l'operation");
+		}
+	}
 	
 	@DeleteMapping("user/{id}")
 	public Map<String,Object> delete(@PathVariable("id") String idUser){

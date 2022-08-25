@@ -1,8 +1,13 @@
 package Bank.solarTransit.Repository;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import Bank.solarTransit.Model.User;
 import Bank.solarTransit.Util.Helper;
@@ -18,6 +23,14 @@ public interface UserRepository extends JpaRepository<User,String>{
 
 	@Query(value = "SELECT * FROM UserTable WHERE mail = :Mail", nativeQuery = true)
 	public User findByMail(String Mail);
+	
+	@Query(value= "SELECT UserTable.* FROM UserTable Where UserTable.Roletype != (SELECT RoleTable.idRole FROM RoleTable WHERE RoleTable.RoleType = 'Admin')", nativeQuery = true)
+	public List<User> findUser();
+	
+	@Modifying
+	@Transactional
+	@Query(value="UPDATE UserTable SET firstname =?1,lastname = ?2,birthdate =?3,mail =?4 WHERE iduser =?5",nativeQuery = true)
+	public int update(String firstname,String lastname,Date birthdate,String mail,String iduser);
 	
 	public default User login(String Mail, String Password) throws Exception {
 		Password = Helper.sha1(Password);

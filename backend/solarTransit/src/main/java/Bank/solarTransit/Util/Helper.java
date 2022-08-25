@@ -3,6 +3,8 @@ package Bank.solarTransit.Util;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,5 +37,19 @@ public class Helper {
     
     public static Map<String, Object> succesResponse(Object obj){
     	return buildResponse(obj, "200");
+    }
+    
+    public static Connection Connecter(){
+        String url = "jdbc:postgresql://localhost:5432/bankatm";
+        String user = "bankatm"; 
+        String pass = "123456"; 
+        Connection connection=null; 
+        try
+        { 
+            connection = DriverManager.getConnection(url,user,pass);
+        }catch(Exception ex){ 
+        	ex.getMessage();
+    	}
+        return connection; 
     }
 }

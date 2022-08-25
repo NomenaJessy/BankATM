@@ -15,5 +15,5 @@ public interface TransactionRepository extends JpaRepository<Transaction,String>
 	public List<Transaction>findByUserId(String idUser);
 	
 	@Query(value="INSERT INTO Transaction(amount,iduser,receiver,idtransactiontype) VALUES (:amount,:iduser,:receiver,:idtransactionType)",nativeQuery=true)
-	public void insert(Double amount,String iduser,String receiver,String idtransactionType);
+	public int insert(Double amount,String iduser,String receiver,String idtransactionType);
 }

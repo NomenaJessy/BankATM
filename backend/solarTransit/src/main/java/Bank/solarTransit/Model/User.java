@@ -6,7 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 
 @Entity
 @Table(name="usertable")
@@ -84,6 +87,14 @@ public class User {
 		this.setPassword(Password);
 	}
 	
+	public User(String idUser,String Firstname,String Lastname,Date Birthdate,String Mail) {
+		this.setIdUser(idUser);
+		this.setFirstname(Firstname);
+		this.setLastname(Lastname);
+		this.setBirthdate(Birthdate);
+		this.setMail(Mail);
+	}
+	
 	public User(String idUser,String Firstname,String Lastname,Date Birthdate,String Mail,String Password,String RoleType) {
 		this.setIdUser(idUser);
 		this.setFirstname(Firstname);
@@ -92,5 +103,11 @@ public class User {
 		this.setMail(Mail);
 		this.setPassword(Password);
 		this.setRoleType(RoleType);
+	}
+	
+	public void Update() {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		
 	}
 }
